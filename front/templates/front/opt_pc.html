@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}<title>Компьютеры оптом</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поставки</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <a href="{% url 'opt_pc' %}"><div class="list-link">Компьютеры</div></a>
+                <a href="{% url 'opt_nout' %}"><div class="list">Ноутбуки</div></a>
+
+
+                 <a href="{% url 'opt_monoblock' %}"><div class="list">Моноблоки</div></a>
+                <a href="{% url 'search' %}">
+                <div class="list">Комплектующие</div></a>
+
+            </div>
+        </div>
+    </div>
+      <br>
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Производители</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <a href="{% url 'search' %}?q=&order=1&category=50&vendor=76">
+                <div class="list">DELL</div></a>
+                <a href="{% url 'search' %}?q=&order=1&category=50&vendor=14">
+                <div class="list">HP</div></a>
+                <a href="{% url 'search' %}?q=&order=1&category=50&vendor=49">
+                <div class="list">Acer</div></a>
+                <a href="{% url 'search' %}?q=&order=1&category=50&vendor=46">
+                <div class="list">Lenovо</div></a>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row pad">
+    <div class="search-catalog">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поиск по каталогу</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="search-form">
+                    <form action="{% url 'search' %}" method="GET">
+
+
+                            <div class="q">
+
+                                {{ form.q }}<br>
+                                {{ form.category }}<br>
+                                {{ form.vendor }}
+                            </div>
+                            <div class="flex">
+                                {{ form.order.label }}:  {{ form.order }}
+                            </div>
+                            <div class="block">{{ form.available }} {{ form.available.label }}</div>
+                        {% if user.is_staff %}
+                        <div class="distr">
+                                {{ form.distr.label }}<br>
+                                {{ form.distr }}
+                            </div>
+                        {% endif %}
+                        <button class="mini-key">Искать</button>
+                    </form>
+                    <a href="{% url 'search' %}"><div class="list">Сбросить</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="empty">&nbsp;</div>
+
+</div>
+
+    <br>
+
+    <h1>Компьютеры оптом</h1>
+    <p>ТОО "Concept Solution" осущесвляет оптовые поставки компьютеров по Республике Казахстан.<br>
+    Мы работаем только с официальным представителями мировых производителей компьютеров и комплектующих.<br>
+        В нашей базе данных {{ pc_count }} наименований <a href="{% url 'search' %}?q=&order=1&category=50&vendor=">готовых компьютеров.</a></p>
+
+    <table border="1">
+    {% for t in tab %}
+        <tr><td>{{ t.product.title }}</td><td>{{ t.price }}</td></tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'search' %}?q=&order=1&category=50&vendor=">Все компьютеры</a>
+
+    <h2>Брендовые компьютеры оптом</h2>
+    <p>Компьютеры мировых производителей представлены в Казахстане следуюшими брендами:</p>
+
+    <ul>
+        <li><a href="{% url 'search' %}?q=&order=1&category=50&vendor=76">DELL ({{ cntv.dell }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=50&vendor=14">HP ({{ cntv.hp }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=50&vendor=49">Acer ({{ cntv.acer }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=50&vendor=46">Lenovo ({{ cntv.lenovo }})</a></li>
+    </ul>
+
+<h2>Профессиональная сборка компьютеров</h2>
+    <p>
+    Наши специалисты соберут для вас компьютеры любой конфигурации из более {{ components }} наименований комлектующих.
+    </p>
+    <h3>Комплектующие для компьютеров</h3>
+    <ul>
+        <li><a href="{% url 'search' %}?q=&order=1&category=11&vendor=">Процессоры ({{ cntc.cpu }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=12&vendor=">Материнские платы ({{ cntc.mb }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=14&vendor=">Видеокарты ({{ cntc.graph }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=13&vendor=">Оперативная память ({{ cntc.ram }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=15&vendor=">Жёсткие диски ({{ cntc.hdd }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=16&vendor=">SSD накопители ({{ cntc.ssd }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=17&vendor=">Блоки питания ({{ cntc.power }})</a></li>
+        <li><a href="{% url 'search' %}?q=&order=1&category=18&vendor=">Корпуса ({{ cntc.case }})</a></li>
+    </ul>
+    <br>
+    <h2>Заказать компьютеры оптом</h2>
+    <p>Заказать компьютеры оптом вы можете по телефонам:</p>
+    <h3><b><a href="tel:+77072174105">Звонить: +7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</a></b></h3>
+    <h3><b><a href="tel:+77089725848">Звонить: +7&nbsp;(727)&nbsp;972&nbsp;58&nbsp;48</a></b></h3>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}<title>{{ product.title }}</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Меню</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <a href="{% url 'search' %}"><div class="list">Поиск</div></a>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="search-step">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ product.title }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="flex">
+                            <a href="{% url 'product' product.id %}">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div>
+                                <div class="flex">
+                                    <div class="block">{{ product.id }}</div>
+                                    <div class="block"><b>{{ product }}</b></div>
+                                    <div class="block">{{ product.article }}</div>
+                                    <div class="block">{{ product.iarticle }}</div>
+                                    <div class="block">{{ product.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ product.description }}</span></div>
+
+                            </div>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <h2>Наличие</h2>
+    {% for d in distr_list %}
+        <h4>{{ d.distr }}</h4>
+    {% endfor %}
+
+    <br>
+    <h2>Цена</h2>
+    {% for p in price_list %}
+        <h4>{{ p.price }} || {{ p.distr }} || {{ p.date }} || {{ p.type }}</h4>
+    {% endfor %}
+
+{% endblock %}

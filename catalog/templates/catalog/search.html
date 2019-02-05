@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Поиск по каталогу</title>{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="search-catalog">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поиск по каталогу</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="search-form">
+                    <form action="" method="GET">
+
+
+                            <div class="q">
+                                {{ form.number }}<br>
+                                {{ form.q }}<br>
+                                {{ form.category }}<br>
+                                {{ form.vendor }}
+                            </div>
+                            <div class="flex">
+                                {{ form.order.label }}:  {{ form.order }}
+                            </div>
+                            <div class="block">{{ form.available }} {{ form.available.label }}</div>
+                        {% if user.is_staff %}
+                        <div class="distr">
+                                {{ form.distr.label }}<br>
+                                {{ form.distr }}
+                            </div>
+                        {% endif %}
+                        <button class="mini-key">Искать</button>
+                    </form>
+                    <a href="{% url 'search' %}"><div class="list">Сбросить</div></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="empty">&nbsp;</div>
+
+</div>
+    <br>
+    {% if result %}
+    <div class="search-result">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Результаты поиска</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="prod-found">
+
+                    <div class="block">Найдено совпадений: {{ coount_result }}</div>
+                    {% for f in result %}
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-lg-3  col-sm-12">
+                                <div class="ttl">{{ f.product.title }}</div>
+                                <div class="row pad justify-content-between">
+                                    <div class="col-6 col-lg-5">
+                                        <img src="{% static 'img/def.svg' %}" class="img-fluid">
+                                    </div>
+                                    <div class="col-5 col-lg-5 block">
+                                        <div class="prc {{ f.cpcolor }}">{{ f.cp }}</div>
+                                        <div class="rmk {{ f.datecolor }}">{{ f.date }}</div>
+                                        <div class="rmk {{ f.avcolor }}">{{ f.available }}</div>
+                                        <div class="list">{{ f.product.number }}</div>
+
+                                    </div>
+                            </div>
+                        </div>
+
+                        {% if user.is_staff %}
+                                    <div class="col-1 block">
+                                <div class="list-link">{{ f.profit }} ({{ f.percent }}%)</div>
+                                        <div class="list">{{ f.price }}</div>
+                                <div class="list">{{ f.distr.distr }}</div>
+                                <div class="list-link">{{ f.code.code }}</div>
+                                        <a target="_blank" href="{% url 'set' %}?product={{ f.product.id }}"><div class="list">Добавить</div></a>
+                            </div>
+                                {% endif %}
+
+                        <div class="col">
+
+                            <div class="block">{{ f.product.name }}</div>
+                            <div class="block">Описание: <span class="debug">{{ f.product.description }}</span></div>
+                            <div class="block">{{ f.product.article }}</div>
+                                    <div class="block">{{ f.product.iarticle }}</div>
+
+                        </div>
+                        </div>
+                        <br>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+{% endblock %}
+

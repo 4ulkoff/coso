@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Сборку</title>{% endblock %}
+
+
+{% block content %}
+    <h1>Привет! Я корзина!!!</h1>
+    <p>{{ product }} - {{ sign }}!</p>
+
+    <ul>
+    {% for set in set %}
+        <li> {{ set.order }}. {{ set.product }} ({{ set.value  }} шт.)</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

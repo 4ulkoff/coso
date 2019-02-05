@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Сборку</title>{% endblock %}
+
+
+{% block content %}
+    <h1>Текущий набор</h1>
+    <h3>{{ sign }}</h3>
+
+    {% if set %}
+    <ul>
+    {% for set in set %}
+        <li>{{ set.order }}. {{ set.product }} ({{ set.value  }} шт.) <a href="{% url 'myset' %}?sdel={{ set.pk }}">Удалить</a> </li>
+    {% endfor %}
+    </ul>
+        <a href="{% url 'setadd' %}">Добавить</a> || <a href="{% url 'myset' %}?sdel=all">Очистить</a>
+    {% else %}
+    <h3>Товаров нет</h3>
+    {% endif %}
+
+{% endblock %}

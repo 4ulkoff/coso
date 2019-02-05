@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}<title>Оптовые поставки компьютерной техники</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Меню</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <a href="{% url 'optom' %}">
+                    <div class="list">Компьютеры</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Моноблоки</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Ноутбуки</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Принтеры и МФУ</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Периферия</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Комплектующие</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Сетевое оборудование</div>
+                </a>
+                <a href="{% url 'optom' %}">
+                    <div class="list">Прочее</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Оптовые поставки компьютерной техники</h1>
+
+    <h3><b><a href="tel:+77072174105">Звонить: +7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</a></b></h3>
+
+    <p>Оптовые поставки компьютерной техники по распублике Казахстан.</p>
+
+    <ul>
+        <li>Компьютеры оптом</li>
+        <li>Моноблоки оптом</li>
+        <li>Ноутбуки оптом</li>
+        <li>Принтеры оптом</li>
+        <li>Комплектующие оптом</li>
+    </ul>
+
+    <p>Подробная информация по телефону: <a href="tel:+77072174105">+7&nbsp;(707)&nbsp;217 41 05</a></p>
+
+
+{% endblock %}

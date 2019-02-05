@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Сборку</title>{% endblock %}
+
+
+{% block content %}
+    <h1>Добавить набор</h1>
+
+
+
+
+    {% if set %}
+        <form>
+        <input style="width: 30em" placeholder="Заголовок"><br>
+        <textarea style="width: 30em" placeholder="Описание"></textarea>
+
+    <table>
+    {% for set in set %}
+        <tr><td><input style="width: 20px" value="{{ set.order }}"></td><td> {{ set.product }} </td>
+            <td><input style="width: 30px" value="{{ set.value  }}"> шт. </td>
+            <td><a href="{% url 'myset' %}?sdel={{ set.pk }}">Удалить</a></td></tr>
+    {% endfor %}
+    </table>
+
+        <button class="mini-key">Добавить</button>
+        </form>
+        <br>
+
+        {% for formset in formset %}
+
+            {{ formset }}<br>
+        {% endfor %}
+
+    {% else %}
+    <h3>Товаров нет</h3>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="err">Имя пользователя или пароль неверны. Введите корректные данные.</div>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p class="err">Доступ запрещён!</p>
+        {% else %}
+            <p>Пожалуйста войдите в систему для просмотра этой страницы.</p>
+        {% endif %}
+    {% endif %}
+
+    <div class="content-width">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Вход в систему</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <table>
+                        <tr>
+                            <td>{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                    </table>
+                    <button class="mini-key">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+
+    <h2>Для регистрации на портале</h2>
+    <h3><b><a href="tel:+77072174105">Звонить: +7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</a></b></h3>
+
+{% endblock %}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129690887-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129690887-1');
+</script>
+
+    {% block title %}<title>Компьютеры оптом</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">О компании</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Команда</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Услуги</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="#">Обслуживание дома</a>
+                    <a class="dropdown-item" href="#">Капитальный ремонт</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Прочее</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sti">STI</div>
+
+    <a href="{% url 'login' %}" class="btn btn-light">Войти</a>
+
+</nav>
+
+<!-- Шапка -->
+<div id="header">
+<div><img src="{% static 'img/CSgreen.svg' %}" width="120px"></div>
+    <div id="home">
+        <a href="tel:+77072174105"><div class="list">+7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</div></a>
+        <a href="tel:+77089725848"><div class="list">+7&nbsp;(727)&nbsp;972&nbsp;58&nbsp;48</div></a>
+        <a href="mailto:zakaz@coso.kz"><div class="list">zakaz@coso.kz</div></a>
+    </div>
+</div>
+<!-- Шапка -->
+{% if user.is_staff %}
+<div id="main-menu">
+    <a href="{% url 'indexpars' %}">
+        <div class="h-menu">Парсинг</div>
+    </a>
+    <a href="{% url 'search' %}">
+        <div class="h-menu">Каталог</div>
+    </a>
+{% if user.is_authenticated %}
+                {{ user.get_username }}
+                <a href="{% url 'logout' %}?next={{ request.path }}">Выход</a>
+            {% else %}
+                <a href="{% url 'login' %}?next={{ request.path }}">Вход</a>
+            {% endif %}
+</div>
+
+{% else %}
+<div>
+    <div class="horisont-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Главное меню</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="flexwrap">
+                <a href="{% url 'index' %}"><div class="list">Главная</div></a>
+                <a href="{% url 'about' %}"><div class="list">О компании</div></a>
+                <a href="{% url 'catalogs' %}"><div class="list">Каталог</div></a>
+                <a href="{% url 'about' %}"><div class="list">Участникам тендеров</div></a>
+                <a href="{% url 'optom' %}"><div class="list">Оптовые поставки</div></a>
+                <a href="{% url 'about' %}"><div class="list">Условия доставки</div></a>
+                <a href="{% url 'about' %}"><div class="list">Оформить заказ</div></a>
+                <a href="{% url 'contact' %}"><div class="list">Наши контакты</div></a>
+                <a href="{% url 'login' %}?next={{ request.path }}"><div class="list">Вход</div></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="debug">{{ debug }}</div>
+
+
+<div id="content">
+
+    <div id="left-side">{% block left %}{% endblock %}<br><br><br><br></div>
+    <div id="center">{% block content %}{% endblock %}<br><br><br><br></div>
+    <div id="right-side">{% block right %}{% endblock %}<br><br><br><br></div>
+
+</div>
+
+<div id="footer"> <div class="block">
+    <b>Звонить: <a href="tel:+77089725848">+7&nbsp;(727)&nbsp;972&nbsp;58&nbsp;48</a>&nbsp;&nbsp;<a href="tel:+77072174105">+7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</a></b>&nbsp;&nbsp;&nbsp;
+    <b><a href="mailto:zakaz@coso.kz">Писать:&nbsp;zakaz@coso.kz</a></b>&nbsp;&nbsp;
+    &copy;&nbsp;Concept Solution 2017-2019</div>
+    {% if user.is_staff %}
+        <form action="{% url 'ask_add' %}" method="GET" target="_blank">
+            <input name="contact" id="id_contact" size="78" placeholder="Введите телефон или e-mail" value="">
+        <button class="list">Принять</button>
+        </form>
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

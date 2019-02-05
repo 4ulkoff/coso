@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    {% block title %}<title>Service Trade Invest</title>{% endblock %}
+
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/isti.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">О компании</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Команда</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Услуги</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="#">Обслуживание дома</a>
+                    <a class="dropdown-item" href="#">Капитальный ремонт</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Прочее</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sti">STI</div>
+
+    <a href="login" class="btn btn-light">Войти</a>
+
+</nav>
+
+<header class="header">
+    <div class="row">
+        <div class="col-lg-2 col-md-6 col-sm-12 row">
+            <img align="center" src="{% static 'img/sti.svg' %}" class="logo">
+        </div>
+    </div>
+</header>
+
+
+
+<div class="row">
+    <div class="col-12 col-lg-2">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto flex-column">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">О компании</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Команда</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Услуги</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="#">Обслуживание дома</a>
+                    <a class="dropdown-item" href="#">Капитальный ремонт</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Прочее</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    </div>
+    <div class="col bg-primary">
+        <div class="col-lg-8 col-md-8 col-sm-12 right">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Ваше имя" name="">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control form-control-lg" placeholder="Ваш E-mail"
+                               name="email">
+                    </div>
+                    <div class="form-group">
+         <textarea class="form-control form-control-lg">
+
+         </textarea>
+                    </div>
+                    <input type="submit" class="btn btn-light btn-block" value="Отправить" name="">
+                </div>
+    </div>
+
+</div>
+<!-- Team section -->
+<div id="team" class="team">
+    <div class="container">
+        <h1 class="text-center">Наша команда</h1>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 item">
+                <img align="center" src="{% static 'img/nan.jpg' %}" class="img-fluid" alt="team">
+                <div class="des">
+                    Назарбаев Н.Н.
+                </div>
+                <span class="text-muted">Главный шеф</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 item">
+                <img align="center" src="{% static 'img/putin.jpg' %}" class="img-fluid" alt="team">
+                <div class="des">
+                    Путин В.В.
+                </div>
+                <span class="text-muted">Директор филиала</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 item">
+                <img align="center" src="{% static 'img/si.jpg' %}" class="img-fluid" alt="team">
+                <div class="des">
+                    Си Д.
+                </div>
+                <span class="text-muted">Начальник производства</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 item">
+                <img align="center" src="{% static 'img/tramp.jpg' %}" class="img-fluid" alt="team">
+                <div class="des">
+                    Трамп Д.Ф.
+                </div>
+                <span class="text-muted">Громоотвод</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="footerfix"></div>
+<footer class="bg-dark text-white mt-4">
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <h1>Свяжитесь с нами</h1>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 right">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Ваше имя" name="">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control form-control-lg" placeholder="Ваш E-mail"
+                               name="email">
+                    </div>
+                    <div class="form-group">
+         <textarea class="form-control form-control-lg">
+
+         </textarea>
+                    </div>
+                    <input type="submit" class="btn btn-light btn-block" value="Отправить" name="">
+                </div>
+            </div>
+        </form>
+
+            <div class="col-md-3 text-right small align-self-end">©2018 Service Trade Invest</div>
+
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

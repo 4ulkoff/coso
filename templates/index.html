@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}<title>Компьютеры оптом</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Меню</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <a href="{% url 'index' %}"><div class="list">Главная</div></a>
+                <a href="{% url 'about' %}"><div class="list">О нас</div></a>
+                <a href="{% url 'about' %}"><div class="list">Каталог</div></a>
+                <a href="{% url 'about' %}"><div class="list">Тендеры</div></a>
+                <a href="{% url 'optom' %}"><div class="list">Оптом</div></a>
+                <a href="{% url 'about' %}"><div class="list">Доставка</div></a>
+                <a href="{% url 'about' %}"><div class="list">Заказать</div></a>
+                <a href="{% url 'about' %}"><div class="list">Контакты</div></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <h1>О компании Concept Solution</h1>
+    <p>ТОО Concept Solution является авторизованным продавцом официальных поставщиков компьютерной и цифровой техники в
+        Республике Казахстан.</p>
+    <h3>Основные производители</h3>
+    <ul>
+        <li>INTEL</li>
+        <li>AMD</li>
+        <li>HP</li>
+        <li>DELL</li>
+        <li>Apple</li>
+        <li>Samsung</li>
+        <li>Asus</li>
+        <li>Acer</li>
+        <li>Kingston</li>
+        <li>Xerox</li>
+        <li>Cisco</li>
+        <li>И многих других</li>
+    </ul>
+
+    <h2>Подробная информация по телефону</h2>
+
+    <h3><b><a href="tel:+77471018106">+7&nbsp;(747)&nbsp;101&nbsp;81&nbsp;06</a></b></h3>
+
+{% endblock %}

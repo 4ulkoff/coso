@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129690887-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129690887-1');
+</script>
+
+    {% block title %}<title>Компьютеры оптом</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% load set %}
+
+
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto">
+
+
+
+
+
+
+
+
+            <li class="nav-item">
+                <a class="nav-link"  href="{% url 'index' %}"><div class="list">Главная</div></a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}"><div class="list">О компании</div></a>
+            </li>
+            <li class="nav-item">
+               <a href="{% url 'search' %}"><div class="list">Каталог</div></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{% url 'optom' %}" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Оптовые поставки</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="{% url 'opt_pc' %}">Компьютеры оптом</a>
+                    <a class="dropdown-item" href="{% url 'opt_nout' %}">Ноутбуки оптом</a>
+                    <a class="dropdown-item" href="{% url 'opt_monoblock' %}">Моноблоки оптом</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'optom' %}">Прочее</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}"><div class="list">Участникам тендеров</div></a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}"><div class="list">Условия доставки</div></a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}"><div class="list">Оформить заказ</div></a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'contact' %}"><div class="list">Наши контакты</div></a>
+            </li>
+        </ul>
+    </div>
+
+
+{% if user.is_authenticated %}
+    <div class="pad">{{ user.get_username }}</div>
+                <a href="{% url 'logout' %}?next={{ request.path }}"><div class="list-link">Выход</div></a>
+            {% else %}
+
+                <a href="{% url 'login' %}?next={{ request.path }}"><div class="list-link">Войти</div></a>
+
+{% endif %}
+
+
+</nav>
+
+<!-- Шапка -->
+<div id="header">
+<div><img src="{% static 'img/CSgreen.svg' %}" width="120px"></div>
+    <div id="home">
+        <a href="tel:+77072174105"><div class="list">+7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</div></a>
+        <a href="tel:+77089725848"><div class="list">+7&nbsp;(727)&nbsp;972&nbsp;58&nbsp;48</div></a>
+        <a href="mailto:zakaz@coso.kz"><div class="list">zakaz@coso.kz</div></a>
+    </div>
+</div>
+<!-- Шапка -->
+
+{% hi user.id as a %}
+<div id="main-menu">
+{% if user.is_staff %}
+
+    <a href="{% url 'indexpars' %}">
+        <div class="h-menu">Парсинг</div>
+    </a>
+
+    <a href="{% url 'myset' %}">
+        <div class="h-menu">Набор {{ a }}</div>
+    </a>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+
+    <a href="{% url 'search' %}">
+        <div class="h-menu">Каталог</div></a>
+{% endif %}
+</div>
+
+
+<p>В вашем запросе {{ a }} товаров.</p>
+
+
+<div id="content">
+<div class="row">
+
+    <div class="d-none d-lg-block">{% block left %}{% endblock %}<br></div>
+    <div class="col">{% block content %}{% endblock %}<br><br><br><br></div>
+    <div class="d-none d-lg-block">{% block right %}{% endblock %}<br><br><br><br></div>
+</div>
+</div>
+
+<div id="footer"> <div class="block">
+    <b>Звонить: <a href="tel:+77089725848">+7&nbsp;(727)&nbsp;972&nbsp;58&nbsp;48</a>
+        <a href="tel:+77273756660">+7&nbsp;(727)&nbsp;375&nbsp;6660</a>
+        &nbsp;&nbsp;<a href="tel:+77072174105">+7&nbsp;(707)&nbsp;217&nbsp;41&nbsp;05</a></b>&nbsp;&nbsp;&nbsp;
+    <b><a href="mailto:zakaz@coso.kz">Писать:&nbsp;zakaz@coso.kz</a></b>&nbsp;&nbsp;
+    &copy;&nbsp;Concept Solution 2017-2019</div>
+    {% if user.is_staff %}
+        <form action="{% url 'ask_add' %}" method="GET" target="_blank">
+            <input name="contact" id="id_contact" size="78" placeholder="Введите телефон или e-mail" value="">
+        <button class="list">Принять</button>
+        </form>
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

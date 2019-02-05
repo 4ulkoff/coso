@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Поиск по каталогу</title>{% endblock %}
+
+{% block left %}
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ head }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <div class="search-catalog">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поиск по каталогу</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="search-form">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="h-flex">
+
+                            <input name="free" id="id_free" size="30" placeholder="Свободный поиск" value="">
+                            <input name="depend" id="id_depend" size="30" placeholder="Контекстный поиск" value="">
+
+                            <select name="category" id="id_category" style=" width: 180px">
+                                <option 'selected' value="">Категория</option>
+                                <option value="11">Процессор</option>
+                                {% for cat in cats %}
+                                    <option value="{{ cat.id }}">{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select name="vendor" id="id_vendor" style=" width: 180px">
+                                <option value="">Производитель</option>
+                                {% for vend in vendors %}
+                                    <option value="{{ vend.id }}">{{ vend }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                        <button class="mini-key">Искать</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    {% if fsrch %}
+    <div class="search-result">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Результаты свободного поиска</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="prod-found">
+
+                    <div class="block">Найдено совпадений: {{ fscount }}</div>
+                    {% for f in fsrch %}
+                        <div class="flex">
+                            <a href="{% url 'product' f.id %}">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div>
+                                <div class="flex">
+                                    <div class="block">{{ f.id }}</div>
+                                    <div class="block"><b>{{ f }}</b></div>
+                                    <div class="block">{{ f.article }}</div>
+                                    <div class="block">{{ f.iarticle }}</div>
+                                    <div class="block">{{ f.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ f.description }}</span></div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+     <br>
+    {% if dsrch %}
+    <div class="search-result">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Результаты контекстного поиска</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="prod-found">
+
+                    <div class="block">Найдено совпадений: {{ dscount }}</div>
+                    {% for f in dsrch %}
+                        <div class="flex">
+                            <a href="{% url 'product' f.id %}">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div>
+                                <div class="flex">
+                                    <div class="block">{{ f.id }}</div>
+                                    <div class="block"><b>{{ f }}</b></div>
+                                    <div class="block">{{ f.article }}</div>
+                                    <div class="block">{{ f.iarticle }}</div>
+                                    <div class="block">{{ f.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ f.description }}</span></div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <hr/>
+
+                    <div class="block">Найдено по категории и вендору</div>
+                    {% for p in sprod %}
+                        <div class="flex">
+                            <a href="{{ request.path }}?product={{ p.id }}&code={{ scode }}&distr={{ distr.pk }}&description=">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div>
+                                <div class="flex">
+                                    <div class="block">{{ p.id }}</div>
+                                    <div class="block"><b>{{ p }}</b></div>
+                                    <div class="block">{{ p.article }}</div>
+                                    <div class="block">{{ p.iarticle }}</div>
+                                    <div class="block">{{ p.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ p.description }}</span></div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <br>
+    {% if sprod %}
+    <div class="search-result">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поиск по категории и вендору</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="prod-found">
+
+                    <div class="block">Найдено совпадений: {{ sprc }}</div>
+                    {% for f in sprod %}
+                        <div class="flex">
+                            <a href="{% url 'product' f.id %}">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div>
+                                <div class="flex">
+                                    <div class="block">{{ f.id }}</div>
+                                    <div class="block"><b>{{ f }}</b></div>
+                                    <div class="block">{{ f.article }}</div>
+                                    <div class="block">{{ f.iarticle }}</div>
+                                    <div class="block">{{ f.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ f.description }}</span></div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ head }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

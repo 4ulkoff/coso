@@ -1,0 +1,66 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sti{
+    color: #FFFFFF;
+    font: 1.9em/1.9 Tahoma, sans-serif;
+    font-weight: 800;
+    padding-right: 10px;
+
+}
+
+.bk{
+    background-color: #3f4045;
+}
+.logo{
+    margin: auto;
+}
+
+
+.team{
+ margin: 4em 0;
+ position: relative;
+}
+.team h1{
+ color:#F97300;
+ margin: 2em;
+}
+.team .item{
+ position: relative;
+}
+.team .des{
+ background: #F97300;
+ color: #fff;
+ text-align: center;
+ border-bottom-left-radius: 93%;
+ transition:.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-toggler{
+  background:#fff !important;
+    color: #031d03;
+}

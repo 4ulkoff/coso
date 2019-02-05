@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    {% block title %}<title>Бутстрап</title>{% endblock %}
+
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+
+
+    <div class="row">
+        <div class="child col">1 из 3</div>
+        <div class="child col-6">2 из 3 (широкое)</div>
+        <div class="child col">3 из 3</div>
+    </div>
+    <div class="row">
+        <div class="child col">1 из 3</div>
+        <div class="child col-5">2 из 3 (широкое)</div>
+        <div class="child col">3 из 3</div>
+    </div>
+
+        <div class="row justify-content-sm-center">
+        <div class="col col-md-2">1 из 3</div>
+        <div class="col-sm-auto">Контент переменной ширины</div>
+        <div class="col col-md-2">3 из 3</div>
+    </div>
+    <div class="row">
+        <div class="col">1 из 3</div>
+        <div class="col-sm-auto">Контент переменной ширины номер два</div>
+        <div class="col col-md-2">3 из 3</div>
+    </div>
+    <div class="row">
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="w-100"></div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+    </div>
+
+    <div class="row">
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+    </div>
+    <div class="row">
+        <div class="child col-8">col-8</div>
+        <div class="child col-4">col-4</div>
+    </div>
+
+    <p>!!!!!!!!!!!!!!!!!</p>
+    <div class="row">
+        <div class="child col-sm-8">col-sm-8</div>
+        <div class="child col-sm-4">col-sm-4</div>
+    </div>
+    <div class="row">
+        <div class="child col-sm">col-sm</div>
+        <div class="child col-sm">col-sm</div>
+        <div class="child col-sm">col-sm</div>
+    </div>
+
+    <p>@@@@@@@@@@@@@@@@@@@@@</p>
+    <div class="parent row align-items-start">
+        <div class="col">Верх</div>
+        <div class="col">Верх</div>
+        <div class="col">Верх</div>
+    </div>
+    <div class="parent row align-items-center">
+        <div class="col">Середина</div>
+        <div class="col">Середина</div>
+        <div class="col">Середина</div>
+    </div>
+    <div class="parent row align-items-end">
+        <div class="col">Низ</div>
+        <div class="col">Низ</div>
+        <div class="col">Низ</div>
+    </div>
+
+    <p>+++++++++++++++++++++</p>
+
+        <div class="parent row">
+        <div class="col align-self-start">Верх</div>
+        <div class="col align-self-center">Середина</div>
+        <div class="col align-self-end">Низ</div>
+    </div>
+
+        <div class="row justify-content-start">
+        <div class="child col-4">row justify-content-start</div>
+        <div class="child col-4">row justify-content-start</div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="child col-4">row justify-content-center</div>
+        <div class="child ccol-4">row justify-content-center</div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="child col-4">justify-content-end</div>
+        <div class="child col-4">justify-content-end</div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="child col-4">justify-content-around</div>
+        <div class="child col-4">justify-content-around</div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="child col-4">justify-content-between</div>
+        <div class="child col-4">justify-content-between</div>
+    </div>
+    <p>========================</p>
+
+<div class="row no-gutters">
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+    <div class="child col-6 col-sm-4 col-md-4"><div>col-6 col-sm-4 col-md-4</div></div>
+</div>
+<p>0000000000000000</p>
+        <div class="row">
+        <div class="col-9">.col-9</div>
+        <div class="col-4">.col-4<br>9 + 4 = 13 колонок - это больше 12. Данный элемент шириной в 4 колонки будет перенесён на новую строку.</div>
+        <div class="col-6">.col-6<br>Следующие колонки расположатся вдоль строки.</div>
+    </div>
+
+    <div class="row">
+        <div class="col">Первый неупорядоченный элемент</div>
+        <div class="col order-12">Второй, упорядоченный как последний</div>
+        <div class="col order-1">Третий, упорядоченный как первый</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+        <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-9">Уровень 1: «.col-sm-9»
+        <div class="row">
+            <div class="col-8 col-sm-6">Уровень 2: «.col-8 .col-sm-6»</div>
+            <div class="col-4 col-sm-6">Уровень 2: «.col-4 .col-sm-6»</div>
+        </div>
+    </div>
+</div
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

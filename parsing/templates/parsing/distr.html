@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}<title>Вася лох!</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all"><div class="head-left"></div><div class="head-text">{{ head }}</div><div class="head-close"></div><div class="head-expand"></div><div class="head-right"></div> </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for distr in distr_list %}
+
+
+                    <a href="{{ distr.id }}"><div class="list{% if dpk == distr.pk%}-link{% endif %}">{{ distr.distr }}</div></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}
+
+{% block content %}
+    <h1>{{ name }} лох!</h1>
+    <h3>{{ value }}</h3>
+    <div class="debug">
+        {% for a in exl %}
+            <div class="debug">0 - {{ a.0 }} :: 1 - {{ a.1 }} :: 2 - {{ a.2 }} :: 3 - {{ a.3 }} :: 4 - {{ a.4 }} ::
+                5 - {{ a.5 }} :: 6 - {{ a.6 }} :: 7 - {{ a.7 }} :: 8 - {{ a.8 }} :: 9 - {{ a.9 }} :: 10 - {{ a.10 }}
+             :: 11 - {{ a.11 }} :: 12 - {{ a.12 }}
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

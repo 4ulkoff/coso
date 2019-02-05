@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}<title>Парсинг</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ head }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for distr in distr_list %}
+
+                    <a href="{{ request.path }}distr/{{ distr.pk }}">
+                        <div class="list">{{ distr.distr }}</div></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Напоминание разработчику</h1>
+    <ul>
+        <li>Сделать список массового исключения</li>
+        <li class="debug">Узнать у Алана про форму поиска (Одно поле или несколько)</li>
+        <li class="debug">Результаты поиска в самый низ</li>
+        <li class="debug">Кнопка "Обновить" для формирования заголовка из Категории, вендора и артикула - Реализовано через "Поиск"</li>
+        <li>Оформить список прайсов для обработки</li>
+        <li class="debug">Сделвть редирект по окончанию товаров</li>
+        <li class="err">Сделать совместный шаблон для всех товаров и пошаговой обработки (форма поиска) - невыполнимо</li>
+        <li class="debug">Убрать всех "лохов" из вывода!</li>
+        <li>Оптимизировать код! (View)</li>
+        <li class="debug">Ускорить вывод недобавленных кодов - Ускорил в 7 раз!!!</li>
+    </ul>
+
+{% endblock %}

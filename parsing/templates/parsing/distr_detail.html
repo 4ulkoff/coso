@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}<title>Парсинг {{ name }}</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all"><div class="head-left"></div><div class="head-text">{{ head }}</div><div class="head-close"></div><div class="head-expand"></div><div class="head-right"></div> </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for distr in distr_list %}
+
+
+                    <a href="{% url 'distr' distr.pk %}"><div class="list{% if dpk == distr.pk%}-link{% endif %}">{{ distr.distr }}</div></a>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}
+
+{% block content %}
+    <h1>{{ name }}</h1>
+    <h3>{{ value }}</h3>
+    <div class="debug">
+        {% for undc in uncode %}
+            <a href="{% url 'uncode' undc.pk %}"><div>{{ undc.pk }} :: {{ undc.distr }} :: {{ undc.date }} :: {{ undc.count_new }}</div></a>
+            <a href="{% url 'uncodelist' undc.pk %}"><div>{{ undc.pk }} :: Список :: {{ undc.count_new }}</div></a>
+            <a href="{% url 'uncodestep' undc.pk %}"><div>{{ undc.pk }} :: Пощагово :: {{ undc.count_new }}</div></a>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

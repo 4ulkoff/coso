@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block vertical_menu %}
+
+<div class="vertical-menu">
+    <div class="head-all"><div class="head-left"></div><div class="head-text">{{ head }}</div><div class="head-close"></div><div class="head-expand"></div><div class="head-right"></div> </div>
+    <div class="body-block">
+        <div class="center">
+
+            {% for distr in distr_list %}
+      <li>
+          <a href="{{ author.get_absolute_url }}">{{ author.last_name }}</a> ({{ author.first_name }})
+          {% if perms.catalog.can_change_author %}
+              - <a href="{% url 'author_update' author.pk %}">Изменить</a>
+          {% endif %}
+
+      </li>
+      {% endfor %}
+
+            <?php foreach ($list as $key => $value): ?>
+                <?php $class='list'?>
+                <?php if($linked==$key)$class='list-link' ?>
+                <a href="<?= $path.$key ?>"><div class="<?= $class ?>"><?= $value ?></div></a>
+            <?php endforeach ?>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

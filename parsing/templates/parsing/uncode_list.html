@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Нет в базе</title>{% endblock %}
+
+{% block left %}
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ head }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for d in distr_list %}
+                    <a href="{% url 'distr' d.pk %}">
+                        <div class="list{% if dpk == d.pk %}-link{% endif %}">{{ d.distr }}</div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <h1>{{ count }} товаров {{ distr.distr }} нет в базе</h1>
+
+
+    <div class="debug">{{ result }}</div>
+
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="err">{{ field.label_tag }}</div>
+            <div class="debug">{{ field.errors }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="uncode-list">
+
+        {% for udc in udc_list %}
+
+            <div class="uncode-list">
+                {{ udc.title }} ::
+                {{ udc.source.article }} ::
+                {{ udc.source.category }} ::
+                {{ udc.source.iarticle }} ::
+                {% for v in udc.source.vendor %}
+                    {{ v }}
+                {% endfor %} ::
+                {{ udc.source.code }} ::
+                {{ udc.source.name }}
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

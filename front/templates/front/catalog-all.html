@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+{% block title %}<title>Каталог</title>{% endblock %}
+
+{% block left %}
+
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Категории</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for c in cat_list %}
+                    <a href="{% url 'catalogs' %}?q={{ q }}&category={{ c.id }}&vendor={{ vendor }}">
+                        <div class="list">{{ c.name }}</div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Каталог компьютерной и цифровой техники</h1>
+<div class="row">
+    <div class="search-visitor">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Поиск по каталогу</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <div class="search-form">
+
+                    <form action="" method="GET">
+
+
+                            <div class="q">{{ form.q }}</div>
+                        <div class="flex">
+                            <div class="block">{{ form.category.label }}</div> {{ form.category }}
+                        </div>
+                        <div class="flex">
+                                <div class="block">{{ form.vendor.label }}</div> {{ form.vendor }}
+
+
+                            <a href="{% url 'catalogs' %}"><div class="blockh">Сбросить</div></a>
+                        </div>
+
+
+                        <button class="mini-key">Искать</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="d-none d-lg-block col-4">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Инструкция</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <div class="block">
+                    Оставьте поле <span class="debug">"Поиск"</span> пустым
+                    если хотите просмотреть все товары по <span class="debug">"Категории"</span>
+                    и/или <span class="debug">"Производителю"</span><br>
+                    Для точного поиска используйте артикулы.<br>
+                    <b>Например:</b> <span class="debug">"Core i3-8100"</span> -
+                    введите <span class="debug">"8100"</span>
+                    далее фильтруйте по <span class="debug">"Категории"</span>
+                    и/или <span class="debug">"Производителю"</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><br>
+
+{% if result %}
+    <div class="search-result">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Результаты поиска</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="prod-found">
+
+                    <div class="block">Найдено совпадений: {{ coount_result }} <span class="debug">* Повторяющиеся позиции (см. код товара) находятся у разных поставщиков. Выбирайте по лучшей цене.</span> </div>
+                    {% for f in result %}
+                        <div class="flex">
+                            <a href="{% url 'login' %}">
+                                <div class="plus">&nbsp;</div>
+                            </a>
+                            <div class="block">
+                                {% if f.type == 1 %}
+                                    <div class="list-link">В&nbsp;наличии</div>
+                                    {% else %}
+                                    <div class="list">На&nbsp;заказ</div>
+                                {% endif %}
+                            <div class="list">{{ f.product.number  }}</div>
+                            </div>
+                            <div>
+                                <div class="flex">
+
+                                    <div class="block"><b>{{ f.product }}</b></div>
+                                    <div class="block">{{ f.product.article }}</div>
+                                    <div class="block">{{ f.product.iarticle }}</div>
+                                    <div class="block">{{ f.product.name }}</div>
+                                </div>
+                                <div class="block">Описание: <span class="debug">{{ f.product.description }}</span></div>
+
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+<div class="stat-all">
+    <div class="statistic">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Общая статистика каталога</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <table>
+                    <tr>
+                        <td><a href="{% url 'login' %}"><a href="{% url 'login' %}">
+                            <div class="list">Наименований</div>
+                        </a></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cprod }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Компьютеров</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cpc }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Комплектующих</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccompl }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Производителей</div></a></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cvend }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Ноутбуков</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cnout }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Смартфонов</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ smart }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Категорий</div></a></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccat }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Моноблоков</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cmon }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Планшетов</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ tabs }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="statistic-compl">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Статистика по комплектующим</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <table>
+                    <tr>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Процессоров</div></a></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccpu }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">RAM</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cram }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Блоков питания</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cbp }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">CD/DVD/BD</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ coptic }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Материнских плат</div></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cmb }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">SSD</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cssd }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Корпусов</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccase }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Кулеров</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccool }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Видеокарт</div></a></td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cvc }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">HDD</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ chdd }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Корпус+БП</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ ccasebp }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><a href="{% url 'login' %}">
+                            <div class="list">Водяное охлаждение</div></a>
+                        </td>
+                        <td>
+                            <div class="box"><span class="debug">{{ cwater }}</span></div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+{% endif %}
+    <br>
+{% endblock %}
+
+{% block right %}
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Производители</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                {% for v in vendor_list %}
+                    <a href="{% url 'catalogs' %}?q={{ q }}&category={{ category }}&vendor={{ v.id }}">
+                        <div class="list">{{ v.vendor }}</div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

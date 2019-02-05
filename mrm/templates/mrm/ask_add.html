@@ -1,0 +1,377 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Нет в базе</title>{% endblock %}
+
+{% block left %}
+    <div class="vertical-menu">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">{{ head }}</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+
+                <a href="">
+                    <div class="list-link">!!!</div>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+<div class="flex">
+
+
+    <div id="contact-form">
+    <div class="head-all"><div class="head-left"></div><div class="head-text"><?=$head?></div><div class="head-close"></div><div class="head-expand"></div><div class="head-right"></div> </div>
+    <div class="body-block">
+        <div class="center">
+
+            <table>
+                <tr><td class="block">Новый</td><td>
+                        <select name="cst_new">
+                            <option value="0">Существующий</option>
+                            <option value="1">Новый</option>
+                        </select>
+                    </td></tr>
+                <tr><td class="block">Тип контакта</td><td>
+                        <select name="cst_type">
+                            <option value="0">Неизвестно</option>
+                            <option value="1">Физ. лицо</option>
+                            <option value="2">Юр. лицр</option>
+                        </select>
+                    </td></tr>
+                <tr><td class="block">Телефон</td><td><input type="text" size="20" name="phone_number" value=""></td></tr>
+                <tr><td><b>Эл. почта </b></td><td><input type="text" size="20" name="email" value="<?=$email?>"></td></tr>
+                <tr><td><b>Название</b></td><td><input type="text" size="20" name="cst_title" value="<?=$cst_title?>"></td></tr>
+                <tr><td><b>Имя</b></td><td><input type="text" size="20" name="cst_name" value="<?=$cst_name?>"></td></tr>
+                <tr><td><b>Отчество</b></td><td><input type="text" size="20" name="cst_patronymic" value="<?=$cst_patronymic?>"></td></tr>
+                <tr><td><b>Фамилия</b></td><td><input type="text" size="20" name="cst_surname" value="<?=$cst_surname?>"></td></tr>
+                <tr><td><b>Пол</b></td><td>
+                        <select name="cst_sex">
+                            <option <?php if($cst_sex==0) echo 'selected'?> value="0">Неизвестно</option>
+                            <option <?php if($cst_sex==1) echo 'selected'?> value="1">Мужской</option>
+                            <option <?php if($cst_sex==2) echo 'selected'?> value="2">Женский</option>
+                        </select>
+                    </td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div id="demand-form">
+        <div class="head-all">
+            <div class="head-left"></div>
+            <div class="head-text">Добавить заявку</div>
+            <div class="head-close"></div>
+            <div class="head-expand"></div>
+            <div class="head-right"></div>
+        </div>
+        <div class="body-block">
+            <div class="center">
+                <div class="h-flex">
+
+                </div>
+                <table>
+                    <tr>
+                        <td>Приоритет</td>
+                        <td>
+                            <select name="req_priority">
+                                <option>123</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Источник</td>
+                        <td>
+                            <p>select</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Дата/Время</td>
+                        <td><input size="20" name="start_date" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Бюджет</td>
+                        <td><input type="text" size="19" name="budget" value="">
+                            <input type="checkbox" name="tender" value="1">Тендер
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Запрос:</td>
+                        <td><textarea rows="3" cols="30" name="stick_body">123</textarea></td>
+                    </tr>
+                    <tr>
+                        <td> Комментарий:</td>
+                        <td><textarea rows="3" cols="30" name="stick_comment">321</textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div><br><br><br>
+    <div class="flex">
+        <table>
+            {{ form }}
+        </table>
+    <table>
+        {{ eform }}
+    </table>
+    </div>
+
+
+    <div class="debug">{{ result }}</div>
+
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="err">{{ field.label_tag }}</div>
+            <div class="debug">{{ field.errors }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="uncode-list">
+
+        {% for udc in udc_list %}
+
+            <div class="search-step">
+                <div class="head-all">
+                    <div class="head-left"></div>
+                    <div class="head-text">Подробный поиск совпадений</div>
+                    <div class="head-close"></div>
+                    <div class="head-expand"></div>
+                    <div class="head-right"></div>
+                </div>
+                <div class="body-block">
+                    <div class="center">
+                        <div class="search-form">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="h-flex">
+                                    <input type="hidden" name="label" id="id_label"
+                                           value="search">
+                                    <input name="code" id="id_code" size="20" placeholder="Код дистрибьютора"
+                                           value="{{ udc.source.code }}">
+                                    <input name="free" id="id_free" size="30" placeholder="Свободный поиск"
+                                           value="">
+                                    <input name="iarticle" id="id_iarticle" size="20"
+                                           placeholder="Артикул тех. / Поиск 2"
+                                           value="">
+                                    <input name="article" id="id_article" size="22"
+                                           placeholder="Артикул (изменит форму)" value="">
+                                    <select name="vendor" id="id_vendor" style=" width: 180px">
+                                        {% for v in udc.source.vendor %}
+                                            <option value="{{ v.id }}">{{ v }}</option>
+                                        {% endfor %}
+                                        {% for vend in udc.vendors %}
+                                            <option value="{{ vend.id }}">{{ vend }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <select name="category" id="id_category" style=" width: 180px">
+                                        <option
+                                        'selected'
+                                        value="{{ udc.source.category.id }}">{{ udc.source.category }}</option>
+                                        {% for cat in udc.cats %}
+                                            <option value="{{ cat.id }}">{{ cat }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="block">Кат. в прайсе: <span class="debug">{{ udc.source.cat }}</span>
+                                    </div>
+                                </div>
+                                <button class="mini-key">Искать</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            {% if search %}
+
+                <br>
+            {% endif %}
+
+
+
+            <div class="head-all">
+                <div class="head-left"></div>
+                <div class="head-text">{{ udc.title }}</div>
+                <div class="head-close"></div>
+                <div class="head-expand"></div>
+                <div class="head-right"></div>
+            </div>
+            <div class="body-block">
+                <div class="center">
+
+                    <div class="code-prod-form">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="h-flex">
+                                <div>
+                                    <input type="hidden" name="label" id="id_label"
+                                           value="add">
+                                    <input name="title" id="id_title" size="78" placeholder="Заголовок"
+                                           value="{{ udc.title }}"><br>
+
+                                    <input name="article" id="id_article" size="30" placeholder="Артикул"
+                                           value="{{ udc.source.article }}">
+                                    <select name="category" id="id_category" style=" width: 232px">
+                                        <option
+                                        'selected'
+                                        value="{{ udc.source.category.id }}">{{ udc.source.category }}</option>
+                                        {% for cat in udc.cats %}
+                                            <option value="{{ cat.id }}">{{ cat }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <br>
+                                    <input name="iarticle" id="id_iarticle" size="30" placeholder="Артикул тех."
+                                           value="{{ udc.source.iarticle }}">
+                                    <select name="vendor" id="id_vendor" style=" width: 232px">
+                                        {% for v in udc.source.vendor %}
+                                            <option value="{{ v.id }}">{{ v }}</option>
+                                        {% endfor %}
+                                        {% for vend in udc.vendors %}
+                                            <option value="{{ vend.id }}">{{ vend }}</option>
+                                        {% endfor %}
+                                    </select><br>
+                                    <a href="{{ request.path }}">
+                                        <div class="mini-key">Сбросить</div>
+                                    </a>
+
+                                    <input name="code" id="id_code" size="30" placeholder="Код дистрибьютора"
+                                           value="{{ udc.source.code }}">
+                                    <select name="distr" id="id_distr" style=" width: 232px">
+                                        <option
+                                        'selected' value="{{ distr.pk }}">{{ distr }}</option>
+                                        {% for distr in distr_list %}
+                                            <option value="{{ distr.id }}">{{ distr }}</option>
+                                        {% endfor %}
+
+                                    </select><br>
+                                    <input name="url" id="id_url" size="78" placeholder="Ссылка на товар" value=""><br>
+
+                                </div>
+                                <div class="flex">
+                                    <textarea name="name" id="id_name" rows="8" cols="40"
+                                              placeholder="Полное наименование товара">{{ udc.source.name }}</textarea>
+                                    <textarea name="description" id="id_description" rows="8" cols="40"
+                                              placeholder="Описание товара">{{ udc.source.description }}</textarea>
+                                    <textarea name="comment" id="id_comment" rows="8" cols="40"
+                                              placeholder="Комментарий"></textarea>
+                                    <div class="form-description"><span class="err">Внимание!!!</span><br> Все поля
+                                        будут добавлены как есть.<br>
+                                        Добавьте "Артикул" в поле "Поиска", чтобы заменить параметры в форме.<br>
+                                        Формат заголовка:<br>
+                                        <span class="green-text"><b>{Категория} {Вендор} {Артикул}</b></span>
+                                        <br>Чтобы добавить только товар, удалите "Код дистрибьютора".
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="mini-key">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+
+                    <div class="prod-found">
+                        <div class="flex">
+                            <form action="" method="GET">
+                                <input type="hidden" name="description" id="id_description"
+                                       value="{{ udc.source.name }}">
+                                <button class="mini-button">Исключить</button>
+                                <input name="code" id="id_code" size="30" placeholder="Код дистрибьютора"
+                                       value="{{ udc.source.code }}">
+                                <select name="distr" id="id_distr" style=" width: 232px">
+                                    <option
+                                    'selected' value="{{ distr.pk }}">{{ distr }}</option>
+                                    {% for distr in distr_list %}
+                                        <option value="{{ distr.id }}">{{ distr }}</option>
+                                    {% endfor %}
+
+                                </select>
+                                <input name="product" id="id_product" size="12" placeholder="ID продукта" value="">
+                                <button class="mini-button">Присоединить</button>
+                            </form>
+                            <div class="block">Чтобы "Исключить" товар, оставьте поле "ID продукта" пустым.&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        </div>
+                        <hr>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="search-result">
+                <div class="head-all">
+                    <div class="head-left"></div>
+                    <div class="head-text">Результаты поиска</div>
+                    <div class="head-close"></div>
+                    <div class="head-expand"></div>
+                    <div class="head-right"></div>
+                </div>
+                <div class="body-block">
+                    <div class="center">
+                        <div class="prod-found">
+
+                            <div class="block">Найдено совпадений: {{ scount }}</div>
+                            {% for f in srch %}
+                                <div class="flex">
+                                    <a href="{{ request.path }}?product={{ f.id }}&code={{ scode }}&distr={{ distr.pk }}&description=">
+                                        <div class="plus">&nbsp;</div>
+                                    </a>
+                                    <div>
+                                        <div class="flex">
+                                            <div class="block">{{ f.id }}</div>
+                                            <div class="block"><b>{{ f }}</b></div>
+                                            <div class="block">{{ f.article }}</div>
+                                            <div class="block">{{ f.iarticle }}</div>
+                                            <div class="block">{{ f.name }}</div>
+                                        </div>
+                                        <div class="block">Описание: <span class="debug">{{ f.description }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <hr/>
+
+                            <div class="block">Найдено по категории и вендору</div>
+                            {% for p in sprod %}
+                                <div class="flex">
+                                    <a href="{{ request.path }}?product={{ p.id }}&code={{ scode }}&distr={{ distr.pk }}&description=">
+                                        <div class="plus">&nbsp;</div>
+                                    </a>
+                                    <div>
+                                        <div class="flex">
+                                            <div class="block">{{ p.id }}</div>
+                                            <div class="block"><b>{{ p }}</b></div>
+                                            <div class="block">{{ p.article }}</div>
+                                            <div class="block">{{ p.iarticle }}</div>
+                                            <div class="block">{{ p.name }}</div>
+                                        </div>
+                                        <div class="block">Описание: <span class="debug">{{ p.description }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
